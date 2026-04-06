@@ -1,0 +1,8 @@
+-- Script SQL para insertar los nombres de selected features
+
+INSERT INTO `TU_PROJECT_ID.TU_DATASET.selected_features` (features)
+VALUES
+  ('sepal_length_cm'),
+  ('sepal_width_cm'),
+  ('petal_length_cm'),
+  ('petal_width_cm');

@@ -1,0 +1,7 @@
+-- Script SQL para BigQuery
+-- Crea una tabla para almacenar los selected features de Iris
+
+CREATE TABLE IF NOT EXISTS `TU_PROJECT_ID.TU_DATASET.selected_features` (
+	features STRING,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);

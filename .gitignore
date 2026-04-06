@@ -22,3 +22,6 @@ Thumbs.db
 
 # Personal operational docs
 comandos_personales.md
+
+# Personal scripts with infrastructure details
+scripts/

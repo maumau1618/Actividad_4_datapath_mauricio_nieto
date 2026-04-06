@@ -1,0 +1,12 @@
+-- Script SQL para BigQuery
+-- Crea una tabla para almacenar el dataset Iris
+
+CREATE TABLE IF NOT EXISTS `TU_PROJECT_ID.TU_DATASET.iris_data` (
+	id INT64,
+	sepal_length_cm FLOAT64,
+	sepal_width_cm FLOAT64,
+	petal_length_cm FLOAT64,
+	petal_width_cm FLOAT64,
+	species STRING,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);

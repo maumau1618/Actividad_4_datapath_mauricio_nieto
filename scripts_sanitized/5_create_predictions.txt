@@ -1,0 +1,32 @@
+-- Script SQL para BigQuery
+-- Crea la tabla de predicciones con campos de auditoria
+
+CREATE TABLE IF NOT EXISTS `TU_PROJECT_ID.TU_DATASET.predictions` (
+  prediction_id STRING NOT NULL,
+  request_id STRING,
+  request_timestamp TIMESTAMP NOT NULL,
+
+  -- Trazabilidad del modelo
+  model_name STRING NOT NULL,
+  model_version STRING NOT NULL,
+
+  -- Datos de entrada (features usadas para predecir)
+  sepal_length_cm FLOAT64,
+  sepal_width_cm FLOAT64,
+  petal_length_cm FLOAT64,
+  petal_width_cm FLOAT64,
+
+  -- Salida de inferencia
+  predicted_species STRING,
+  actual_species STRING,
+  predicted_class_id INT64,
+  confidence_score FLOAT64,
+
+  -- Auditoria operativa
+  prediction_status STRING NOT NULL,
+  error_message STRING,
+  creation_user STRING,
+  created_by STRING,
+  load_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+  updated_at TIMESTAMP
+)
