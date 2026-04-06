@@ -241,10 +241,14 @@ CREATE TABLE dataset.predictions (
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install only app dependencies (API runtime)
 pip install -r requirements.txt
 ```
 
-### Run Locally
+**Note:** `requirements.txt` contains only the dependencies needed to run the FastAPI application. The `train_model.ipynb` notebook has its own dependencies.
+
+### Run the API Locally
 
 ```bash
 # Requires GOOGLE_APPLICATION_CREDENTIALS or gcloud authentication
@@ -267,6 +271,26 @@ Then visit: http://localhost:8000/docs (Swagger UI)
 curl -X POST http://localhost:8000/predict_and_store \
   -H "Content-Type: application/json"
 ```
+
+### Run the Jupyter Notebook (Optional)
+
+To execute the model training notebook locally, install the notebook-specific dependencies:
+
+```bash
+# From the same virtual environment, install jupyter
+pip install jupyter matplotlib seaborn
+
+# Launch Jupyter
+jupyter notebook
+```
+
+Then open `train_model.ipynb` and run the cells. This notebook:
+- Trains the LogisticRegression + StandardScaler pipeline
+- Evaluates model performance
+- Serializes model and scaler to `models/pipeline.joblib` and `models/scaler.joblib`
+- Sets pipeline metadata (model_name, model_version, feature_names)
+
+**Note:** The notebook dependencies (jupyter, matplotlib, seaborn) are intentionally kept separate from `requirements.txt` since the production app doesn't need them.
 
 ## 🤖 Model Training
 
@@ -318,10 +342,6 @@ gcloud projects get-iam-policy $PROJECT_ID \
   --flatten="bindings[].members" \
   --filter="bindings.members:serviceAccount:cloudrun-actividad-4-api@*"
 ```
-
-## 📖 Documentation
-
-For detailed deployment instructions with actual values (secrets), see the private `comandos_personales.md` file in the repository (not included in public version for security).
 
 ## 📄 License
 
