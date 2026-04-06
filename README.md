@@ -274,10 +274,11 @@ curl -X POST http://localhost:8000/predict_and_store \
 
 ### Run the Jupyter Notebook (Optional)
 
-To execute the model training notebook locally, install the notebook-specific dependencies:
+To execute the model training notebook locally, install the additional notebook-specific dependencies:
 
 ```bash
-# From the same virtual environment, install jupyter
+# From the same virtual environment, install jupyter and visualization libraries
+# (pandas, numpy, scikit-learn and joblib are already in requirements.txt)
 pip install jupyter matplotlib seaborn
 
 # Launch Jupyter
@@ -290,7 +291,9 @@ Then open `train_model.ipynb` and run the cells. This notebook:
 - Serializes model and scaler to `models/pipeline.joblib` and `models/scaler.joblib`
 - Sets pipeline metadata (model_name, model_version, feature_names)
 
-**Note:** The notebook dependencies (jupyter, matplotlib, seaborn) are intentionally kept separate from `requirements.txt` since the production app doesn't need them.
+**Dependencies breakdown:**
+- Already in `requirements.txt`: `pandas`, `numpy`, `scikit-learn`, `joblib`
+- Install additionally for notebook: `jupyter`, `matplotlib`, `seaborn`
 
 ## 🤖 Model Training
 
@@ -343,11 +346,7 @@ gcloud projects get-iam-policy $PROJECT_ID \
   --filter="bindings.members:serviceAccount:cloudrun-actividad-4-api@*"
 ```
 
-## 📄 License
-
-This project is part of the MLOPS14 course activities.
-
-## 👤 Author
+##  Author
 
 Mauricio Nieto
 
